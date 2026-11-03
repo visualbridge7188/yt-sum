@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "yt-sum — 유튜브 자막 요약",
+  "version": "0.1.0",
+  "description": "Glasp 대체. 로그인 없이 유튜브 자막을 추출·무제한 복사하고, 우리 프롬프트로 Gemini·ChatGPT·Claude에 바로 요약을 요청합니다.",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://gemini.google.com/*",
+    "https://chatgpt.com/*",
+    "https://claude.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "transcript.js",
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://gemini.google.com/*",
+        "https://chatgpt.com/*",
+        "https://claude.ai/*"
+      ],
+      "js": [
+        "ai-fill.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

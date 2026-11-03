@@ -1,0 +1,540 @@
+/* yt-sum — Glasp 스타일 5단 모던 레이아웃 */
+:root {
+  --yts-bg: #ffffff;
+  --yts-text: #111827;
+  --yts-muted: #6b7280;
+  --yts-border: #e5e7eb;
+  --yts-hover: #f3f4f6;
+  --yts-blue: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --yts-bg: #0f0f0f;
+    --yts-text: #f9fafb;
+    --yts-muted: #9ca3af;
+    --yts-border: #27272a;
+    --yts-hover: #1f1f23;
+    --yts-blue: #3b82f6;
+  }
+}
+
+.yts-launcher, .yts-widget {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", sans-serif;
+  color: var(--yts-text);
+  box-sizing: border-box;
+}
+
+/* 1. 유튜브 패널 상단 런처 버튼 */
+.yts-launcher {
+  width: 100%;
+  height: 42px;
+  margin: 0 0 12px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--yts-border);
+  border-radius: 8px;
+  background: var(--yts-bg);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s;
+}
+.yts-launcher:hover {
+  background: var(--yts-hover);
+  border-color: #d1d5db;
+}
+.yts-launch-arrow {
+  margin-left: auto;
+  color: var(--yts-muted);
+  font-size: 16px;
+}
+
+/* 2. 메인 플로팅 사이드 팝업 */
+.yts-widget {
+  position: fixed;
+  z-index: 2147483000;
+  top: 14px;
+  right: 16px;
+  width: min(390px, calc(100vw - 32px));
+  height: min(760px, calc(100vh - 28px));
+  display: flex;
+  flex-direction: column;
+  background: var(--yts-bg);
+  border: 1px solid var(--yts-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+.yts-shorts-widget {
+  top: 72px !important;
+  height: min(740px, calc(100vh - 88px)) !important;
+  right: 20px !important;
+}
+.yts-widget[hidden] {
+  display: none !important;
+}
+.yts-widget * {
+  box-sizing: border-box;
+}
+
+/* 3. 헤더 (44px) */
+.yts-header {
+  height: 44px;
+  flex: none;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--yts-border);
+}
+.yts-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.yts-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  background: transparent !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+.yts-logo svg {
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+.yts-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.yts-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.yts-icon-btn {
+  border: none;
+  background: transparent;
+  color: var(--yts-muted);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.yts-icon-btn:hover {
+  background: var(--yts-hover);
+  color: var(--yts-text);
+}
+
+/* 4. Glasp식 탭바 (자막 / AI 요약) */
+.yts-tabbar {
+  display: flex;
+  border-bottom: 1px solid var(--yts-border);
+  background: var(--yts-bg);
+  flex: none;
+  padding: 0 8px;
+}
+.yts-tab {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: var(--yts-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+.yts-tab:hover {
+  color: var(--yts-text);
+}
+.yts-tab.active {
+  color: var(--yts-text);
+}
+.yts-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2.5px;
+  background: var(--yts-text);
+  border-radius: 2px;
+}
+
+/* 5. AI 요약 패널 */
+.yts-ai-panel {
+  padding: 12px 14px;
+  background: var(--yts-hover);
+  border-bottom: 1px solid var(--yts-border);
+  flex: none;
+}
+.yts-ai-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.yts-ai-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--yts-muted);
+}
+.yts-presets {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--yts-border);
+  border-radius: 8px;
+  background: var(--yts-bg);
+  font-size: 13px;
+  color: var(--yts-text);
+}
+.yts-ai-buttons {
+  display: flex;
+  gap: 6px;
+}
+.yts-ai-btn {
+  flex: 1;
+  padding: 6px 0;
+  border: 1px solid var(--yts-border);
+  border-radius: 6px;
+  background: var(--yts-bg);
+  color: var(--yts-text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.yts-ai-btn:hover {
+  background: #eef2ff;
+  border-color: #818cf8;
+  color: #4f46e5;
+}
+
+/* 6. 툴바 (알약 드롭다운 + 3대 퀵버튼) */
+.yts-toolbar {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--yts-border);
+  flex: none;
+}
+.yts-lang-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--yts-border);
+  border-radius: 9999px;
+  background: var(--yts-hover);
+  font-size: 12.5px;
+  color: var(--yts-text);
+}
+.yts-lang-icon {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--yts-muted);
+}
+.yts-language {
+  border: none;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+.yts-tool-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 상태 표시바 */
+.yts-status {
+  padding: 4px 14px;
+  font-size: 11.5px;
+  color: var(--yts-muted);
+  min-height: 18px;
+  flex: none;
+}
+
+/* 7. 본문 2열 단락형 자막 리스트 */
+.yts-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.yts-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.yts-row:hover {
+  background: var(--yts-hover);
+}
+.yts-row.active {
+  background: #eff6ff;
+}
+
+.yts-time {
+  flex: none;
+  width: 44px;
+  border: none;
+  background: transparent;
+  padding: 2px 0;
+  color: var(--yts-blue);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  text-align: left;
+}
+.yts-time:hover {
+  text-decoration: underline;
+}
+
+.yts-text {
+  margin: 0;
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--yts-text);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 8. 하단 36px 미니멀 푸터 */
+.yts-footer {
+  height: 36px;
+  flex: none;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--yts-border);
+  background: var(--yts-bg);
+  font-size: 11.5px;
+  color: var(--yts-muted);
+}
+.yts-settings-btn {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  color: var(--yts-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.yts-settings-btn:hover {
+  background: var(--yts-hover);
+  color: var(--yts-text);
+}
+/* 쇼츠 전용 우상단 플로팅 런처 버튼 */
+/* 드래그 가능한 둥근 플로팅 런처 버튼 (FAB) */
+.yts-fab-wrap {
+  position: fixed;
+  z-index: 2147482999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+  bottom: 84px;
+  right: 24px;
+}
+.yts-fab-wrap.hidden, .yts-fab-wrap[hidden] {
+  display: none !important;
+}
+.yts-fab-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(18, 18, 20, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s;
+  padding: 0;
+  position: relative;
+}
+.yts-fab-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.yts-fab-btn:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+.yts-fab-btn svg {
+  display: block;
+  pointer-events: none;
+}
+.yts-fab-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff0000;
+  box-shadow: 0 0 6px #ff0000;
+  pointer-events: none;
+}
+.yts-fab-close {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(30, 30, 30, 0.95);
+  color: #a0a0a0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.yts-fab-wrap:hover .yts-fab-close {
+  display: flex;
+}
+.yts-fab-close:hover {
+  color: #ffffff;
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+/* 자막 없음 빈 상태 (Empty State) */
+.yts-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 380px;
+  padding: 40px 24px;
+  gap: 12px;
+  color: var(--yts-muted);
+}
+.yts-empty-icon {
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+.yts-empty-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--yts-text);
+}
+.yts-empty-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 280px;
+  word-break: keep-all;
+}
+.yts-empty-link {
+  margin-top: 14px;
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--yts-hover);
+  border: 1px solid var(--yts-border);
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--yts-blue);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.yts-switch-cta-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--yts-blue);
+  color: #ffffff !important;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: transform 0.15s, background 0.15s;
+}
+.yts-switch-cta-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+.yts-empty-link:hover {
+  background: #eff6ff;
+}
+
+/* 모던 툴팁 시스템 */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 5px 9px;
+  background: #1f2937;
+  color: #f9fafb;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 2147483647;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 아이콘 SVG 스타일 */
+.yts-icon-btn svg, .yts-settings-btn svg {
+  display: block;
+  pointer-events: none;
+}

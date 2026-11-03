@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>yt-sum — 프롬프트 설정</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f7f8fa; color: #202124; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }
+    header { background: #fff; border-bottom: 1px solid #e5e7eb; }
+    .inner { max-width: 800px; margin: auto; padding: 20px 24px; }
+    .brand { font-weight: 700; font-size: 18px; }
+    main { max-width: 800px; margin: 32px auto; padding: 0 24px 48px; }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    .description { margin: 0 0 24px; color: #626871; }
+    .preset { background: white; border: 1px solid #e2e5e9; border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+    .preset-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-weight: 700; }
+    label { display: block; margin: 12px 0 6px; font-weight: 600; }
+    input, textarea { display: block; width: 100%; border: 1px solid #d5d9df; border-radius: 7px; padding: 10px 12px; color: inherit; font: inherit; }
+    textarea { min-height: 135px; resize: vertical; }
+    input:focus, textarea:focus { outline: 2px solid #aebfff; border-color: #5c78ef; }
+    button { border: 1px solid #d5d9df; border-radius: 7px; background: white; padding: 9px 15px; color: inherit; font: inherit; font-weight: 600; cursor: pointer; }
+    button:hover { background: #f3f5f8; }
+    button:focus-visible { outline: 2px solid #5c78ef; outline-offset: 2px; }
+    .remove { color: #b42318; border: 0; padding: 5px 8px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    #save { background: #4868e8; border-color: #4868e8; color: white; }
+    #save:hover { background: #3754c8; }
+    #msg { min-height: 1.5em; margin-top: 12px; color: #167245; }
+    #msg.error { color: #b42318; }
+  </style>
+</head>
+<body>
+  <header><div class="inner"><span class="brand">yt-sum</span> · 설정</div></header>
+  <main>
+    <h1>요약 프롬프트</h1>
+    <p class="description">AI에 전달할 요청을 만들고 관리해요. 선택한 프롬프트 뒤에 영상 자막이 붙어요.</p>
+    <div id="rows"></div>
+    <button id="add" type="button">+ 프롬프트 추가</button>
+    <div class="actions">
+      <button id="save" type="button">변경사항 저장</button>
+      <button id="reset" type="button">기본값 복원</button>
+      <button id="reload-ext" type="button" style="margin-left:auto; background:#10b981; color:white; border-color:#10b981;">확장 프로그램 새로고침 ↻</button>
+    </div>
+    <div id="msg" role="status" aria-live="polite"></div>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
